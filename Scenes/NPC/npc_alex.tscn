@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bssy0fqd505oy"]
 
-[ext_resource type="Script" uid="uid://dgmufmplky242" path="res://Scenes/NPCAlex/npc_alex.gd" id="1_n5j1i"]
+[ext_resource type="Script" uid="uid://dgmufmplky242" path="res://Scenes/NPC/npc_alex.gd" id="1_n5j1i"]
 [ext_resource type="Texture2D" uid="uid://bi4j8u1iipk5p" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaMasked Alex/SpriteSheet.png" id="1_vu4ov"]
 [ext_resource type="Texture2D" uid="uid://b7vu3b2455xna" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogBoxFaceset.png" id="3_rlh8s"]
 [ext_resource type="Texture2D" uid="uid://pl6c02a6n543" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaMasked Alex/Faceset.png" id="4_3vbut"]
@@ -22,7 +22,7 @@ font_size = 14
 process_mode = 3
 position = Vector2(1, 0)
 script = ExtResource("1_n5j1i")
-dialog_lines = ["Hello, there!", "Did you know there's a cave in the east?"]
+dialog_lines = Array[String](["Hello, there!", "Did you know there's a cave in the east?"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1)
