@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cumw4tafipxfy"]
+[gd_scene load_steps=18 format=4 uid="uid://cumw4tafipxfy"]
 
 [ext_resource type="Texture2D" uid="uid://bva82gkl5ve8b" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/TilesetWallSimple.png" id="1_sx8ki"]
 [ext_resource type="PackedScene" uid="uid://dhjxpdfrc4irr" path="res://Scenes/Player/player.tscn" id="1_xuufh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cbo5ymtln8p54" path="res://Scenes/Block/block.tscn" id="7_8ho00"]
 [ext_resource type="PackedScene" uid="uid://cu8ewxdhsj8mt" path="res://Scenes/Block/ice_block.tscn" id="8_odg1s"]
 [ext_resource type="PackedScene" uid="uid://0ktybso8mv76" path="res://Scenes/PuzzleButton/single_use_puzzle_button.tscn" id="9_n5fck"]
+[ext_resource type="PackedScene" uid="uid://b7c5r8v2mrci" path="res://Scenes/Switch/switch_puzzle_manager.tscn" id="11_g75ix"]
 [ext_resource type="PackedScene" uid="uid://c0qq8s4rr8tek" path="res://Scenes/Switch/switch.tscn" id="11_nqymn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5fck"]
@@ -600,7 +601,7 @@ terrain_set_0/terrain_0/name = "Floor"
 terrain_set_0/terrain_0/color = Color(0.608243, 0.0865195, 0.636637, 1)
 sources/0 = SubResource("TileSetAtlasSource_102mq")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6f4q3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x00t5"]
 texture = ExtResource("1_sx8ki")
 0:0/0 = 0
 1:0/0 = 0
@@ -818,7 +819,7 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "DungeonWalls"
 terrain_set_0/terrain_0/color = Color(0.574785, 0.178178, 0.613629, 1)
-sources/0 = SubResource("TileSetAtlasSource_6f4q3")
+sources/0 = SubResource("TileSetAtlasSource_x00t5")
 
 [node name="DungeonScene" type="Node2D"]
 
@@ -873,9 +874,6 @@ position = Vector2(-89, 7)
 [node name="SingleUsePuzzleButton" parent="." instance=ExtResource("9_n5fck")]
 position = Vector2(-136, -129)
 
-[node name="Switch" parent="." instance=ExtResource("11_nqymn")]
-position = Vector2(200, -143)
-
 [node name="Block" parent="." instance=ExtResource("7_8ho00")]
 position = Vector2(-105, 6)
 
@@ -894,6 +892,21 @@ position = Vector2(153, -88)
 [node name="LockedDoor3" parent="." instance=ExtResource("5_00mv7")]
 position = Vector2(200, -117)
 
+[node name="SwitchPuzzleManager" parent="." instance=ExtResource("11_g75ix")]
+position = Vector2(24, -42)
+
+[node name="Switch1" parent="." instance=ExtResource("11_nqymn")]
+position = Vector2(-20, -55)
+
+[node name="Switch2" parent="." instance=ExtResource("11_nqymn")]
+position = Vector2(5, -45)
+
+[node name="Switch3" parent="." instance=ExtResource("11_nqymn")]
+position = Vector2(45, -45)
+
+[node name="Switch4" parent="." instance=ExtResource("11_nqymn")]
+position = Vector2(68, -55)
+
 [node name="Player" parent="." instance=ExtResource("1_xuufh")]
 y_sort_enabled = true
 position = Vector2(22, -24)
@@ -907,7 +920,15 @@ zoom = Vector2(5, 5)
 [connection signal="pressed" from="PuzzleButton2" to="LockedDoor" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton2" to="LockedDoor" method="_on_puzzle_button_unpressed"]
 [connection signal="pressed" from="SingleUsePuzzleButton" to="LockedDoor2" method="_on_puzzle_button_pressed"]
-[connection signal="switch_activated" from="Switch" to="SecretWall" method="_on_switch_switch_activated"]
-[connection signal="switch_deactivated" from="Switch" to="SecretWall" method="_on_switch_switch_deactivated"]
 [connection signal="pressed" from="PuzzleButton3" to="LockedDoor3" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton3" to="LockedDoor3" method="_on_puzzle_button_unpressed"]
+[connection signal="puzzle_failed" from="SwitchPuzzleManager" to="SecretWall" method="enable_secret_wall"]
+[connection signal="puzzle_solved" from="SwitchPuzzleManager" to="SecretWall" method="disable_secret_wall"]
+[connection signal="switch_activated" from="Switch1" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_deactivated" from="Switch1" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_activated" from="Switch2" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_deactivated" from="Switch2" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_activated" from="Switch3" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_deactivated" from="Switch3" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_activated" from="Switch4" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_deactivated" from="Switch4" to="SwitchPuzzleManager" method="increase_score"]
