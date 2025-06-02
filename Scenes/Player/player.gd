@@ -6,6 +6,7 @@ class_name Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	update_treasure_label()
 	if SceneManager.player_spawn_position != Vector2(0,0):
 		position = SceneManager.player_spawn_position
 
@@ -13,6 +14,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	move_player()
 	push_blocks()
+	update_treasure_label()
 	move_and_slide()
 
 func move_player() -> void:
@@ -35,6 +37,8 @@ func move_player() -> void:
 	else:
 		$AnimatedSprite2D.stop()
 
+func update_treasure_label():
+	%TreasureLabel.text = str(SceneManager.opened_chest.size())
 
 # Get last collision
 # Check if it's the block

@@ -14,9 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://c0qq8s4rr8tek" path="res://Scenes/Switch/switch.tscn" id="11_nqymn"]
 [ext_resource type="PackedScene" uid="uid://bvo6duucr0brx" path="res://Scenes/TreasureChest/treasure_chest.tscn" id="13_x00t5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5fck"]
-size = Vector2(46.5, 34)
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_102mq"]
 texture = ExtResource("2_6f4q3")
 0:0/0 = 0
@@ -822,27 +819,10 @@ terrain_set_0/terrain_0/name = "DungeonWalls"
 terrain_set_0/terrain_0/color = Color(0.574785, 0.178178, 0.613629, 1)
 sources/0 = SubResource("TileSetAtlasSource_x00t5")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5fck"]
+size = Vector2(46.5, 34)
+
 [node name="DungeonScene" type="Node2D"]
-
-[node name="PuzzleWalls" type="StaticBody2D" parent="."]
-collision_layer = 8
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleWalls"]
-position = Vector2(-55.5, -24)
-shape = SubResource("RectangleShape2D_n5fck")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="PuzzleWalls"]
-position = Vector2(-136, -82)
-shape = SubResource("RectangleShape2D_n5fck")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="PuzzleWalls"]
-position = Vector2(200, -114)
-shape = SubResource("RectangleShape2D_n5fck")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="PuzzleWalls"]
-position = Vector2(104, -24)
-shape = SubResource("RectangleShape2D_n5fck")
 
 [node name="FloorLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAAAAAAAMAA4AAAABAP//AAAMAA0AAAABAP7/AAAMAA0AAAABAP3/AAAMAA0AAAABAPz/AAAMAA0AAAAAAAAAAAAMAA4AAAAAAP//AAAMAA0AAAAAAP7/AAAMAA0AAAAAAP3/AAAMAA0AAAAAAPz/AAARAA4AAAD//wAAAAAMAA4AAAD/////AAAMAA0AAAD///7/AAAMAA0AAAD///3/AAAMAA0AAAD///z/AAAMAAwAAAD+/wAAAAALAA4AAAD+////AAARAA0AAAD+//7/AAAMAA0AAAD+//3/AAARAA4AAAD+//z/AAALAAwAAAD9//7/AAAMAA0AAAD8//7/AAAMAA0AAAD7//7/AAAMAA0AAAD6//7/AAAMAA0AAAD9//3/AAAMAAwAAAD8//3/AAAMAAwAAAD7//3/AAAMAAwAAAD9////AAAMAA4AAAD8////AAAMAA4AAAD7////AAAMAA4AAAD6/wIAAAANAA4AAAD6/wEAAAANAA0AAAD6/wAAAAANAA0AAAD6////AAAQAA0AAAD6//3/AAAQAA4AAAD6//z/AAANAAwAAAD5/wIAAAAMAA4AAAD5/wEAAAAMAA0AAAD5/wAAAAAMAA0AAAD5////AAAMAA0AAAD5//7/AAAMAA0AAAD5//3/AAAMAA0AAAD5//z/AAAMAAwAAAD4/wIAAAAMAA4AAAD4/wEAAAAMAA0AAAD4/wAAAAAMAA0AAAD4////AAAMAA0AAAD4//7/AAAMAA0AAAD4//3/AAAMAA0AAAD4//z/AAAQAA4AAAD3/wIAAAAMAA4AAAD3/wEAAAAMAA0AAAD3/wAAAAAMAA0AAAD3////AAAMAA0AAAD3//7/AAAMAA0AAAD3//3/AAAMAA0AAAD3//z/AAAMAA0AAAD3//v/AAATAA4AAAD2/wIAAAAMAA4AAAD2/wEAAAAMAA0AAAD2/wAAAAAMAA0AAAD2////AAAMAA0AAAD2//7/AAAMAA0AAAD2//3/AAAMAA0AAAD2//z/AAARAA4AAAD1/wIAAAAMAA4AAAD1/wEAAAAMAA0AAAD1/wAAAAAMAA0AAAD1////AAAMAA0AAAD1//7/AAAMAA0AAAD1//3/AAAMAA0AAAD1//z/AAAMAAwAAAD0/wIAAAALAA4AAAD0/wEAAAALAA0AAAD0/wAAAAALAA0AAAD0////AAALAA0AAAD0//7/AAALAA0AAAD0//3/AAALAA0AAAD0//z/AAALAAwAAAD3//r/AAAOAA0AAAD2//v/AAALAAwAAAD4//v/AAANAAwAAAACAP3/AAAMAA0AAAACAP//AAAMAA0AAAACAP7/AAAMAA0AAAADAP7/AAAMAA0AAAAEAP7/AAAMAA0AAAAFAP7/AAAQABAAAAAFAP3/AAANAAwAAAAFAP//AAANAA4AAAAIAP3/AAALAAwAAAAIAP7/AAARABAAAAAJAP7/AAAMAA0AAAAJAP//AAARAA0AAAAJAAAAAAALAA4AAAAKAAAAAAAMAA4AAAAKAP//AAAMAA0AAAAKAP7/AAAMAA0AAAAKAP3/AAAMAA0AAAAKAPz/AAAMAA0AAAAKAPv/AAAMAA0AAAAKAPr/AAAMAAwAAAAJAP3/AAARAA4AAAAJAPz/AAALAA0AAAAJAPv/AAALAA0AAAAJAPr/AAALAAwAAAAIAP//AAALAA4AAAAHAP7/AAAMAA8AAAAGAP7/AAAMAA8AAAAMAPz/AAAMAA0AAAAMAPv/AAAMAA0AAAAMAPr/AAAMAA0AAAALAPz/AAAMAA0AAAALAPv/AAAMAA0AAAALAPr/AAARAA4AAAALAP3/AAAMAA0AAAD2//f/AAALAAwAAAD3//f/AAAMAAwAAAD4//f/AAANAAwAAAD4//j/AAANAA0AAAD3//j/AAAMAA0AAAD2//j/AAALAA0AAAD3//n/AAATAA0AAAD2//n/AAALAA4AAAD4//n/AAANAA4AAAAEAAAAAAANAA4AAAAEAP//AAAQAA0AAAAEAP3/AAAQAA4AAAAEAPz/AAANAAwAAAADAAAAAAAMAA4AAAADAP//AAAMAA0AAAADAP3/AAAMAA0AAAADAPz/AAAMAAwAAAACAAAAAAAMAA4AAAACAPz/AAAQAA4AAAACAPv/AAANAAwAAAABAPv/AAATAA4AAAAAAPv/AAALAAwAAAABAPn/AAATAA0AAAAAAPn/AAALAA4AAAACAPn/AAANAA4AAAABAPr/AAAOAA0AAAADAPj/AAANAA4AAAADAPf/AAANAA0AAAADAPb/AAANAAwAAAACAPj/AAAQAA0AAAACAPf/AAAMAA0AAAACAPb/AAAMAAwAAAABAPj/AAAMAA0AAAABAPf/AAAMAA0AAAABAPb/AAAMAAwAAAAAAPj/AAARAA0AAAAAAPf/AAAMAA0AAAAAAPb/AAAMAAwAAAD///j/AAALAA4AAAD///f/AAALAA0AAAD///b/AAALAAwAAAANAAAAAAANAA4AAAANAP//AAANAA0AAAANAP7/AAANAA0AAAANAP3/AAAQAA0AAAANAPz/AAAMAA0AAAANAPv/AAAMAA0AAAANAPr/AAAQAA4AAAAMAAAAAAAMAA4AAAAMAP//AAAMAA0AAAAMAP7/AAAMAA0AAAAMAP3/AAAMAA0AAAALAAAAAAAMAA4AAAALAP//AAAMAA0AAAALAP7/AAAMAA0AAAAPAPz/AAANAA4AAAAPAPv/AAANAA0AAAAPAPr/AAANAAwAAAAOAPz/AAAQAA0AAAAOAPv/AAAMAA0AAAAOAPr/AAAMAAwAAAAOAP3/AAANAA4AAAAMAPn/AAATAA4AAAAMAPj/AAAOAA0AAAAMAPf/AAAOAAwAAAALAPn/AAALAAwAAAANAPn/AAANAAwAAAA=")
@@ -862,51 +842,51 @@ position = Vector2(24, 21)
 next_scene = "res://Scenes/GameScene/game_scene.tscn"
 player_spawn_position = Vector2(312, -162)
 
-[node name="LockedDoor" parent="." instance=ExtResource("5_00mv7")]
-position = Vector2(-136, -82)
-buttons_needed = 2
-
 [node name="PuzzleButton" parent="." instance=ExtResource("6_8ho00")]
 position = Vector2(-184, -58)
 
-[node name="PuzzleButton2" parent="." instance=ExtResource("6_8ho00")]
-position = Vector2(-89, 7)
+[node name="PuzzleButton2" parent="PuzzleButton" instance=ExtResource("6_8ho00")]
+position = Vector2(95, 65)
 
-[node name="SingleUsePuzzleButton" parent="." instance=ExtResource("9_n5fck")]
-position = Vector2(-136, -106)
+[node name="PuzzleButton3" parent="PuzzleButton" instance=ExtResource("6_8ho00")]
+position = Vector2(337, -30)
+
+[node name="SingleUsePuzzleButton" parent="PuzzleButton" instance=ExtResource("9_n5fck")]
+position = Vector2(48, -48)
 
 [node name="Block" parent="." instance=ExtResource("7_8ho00")]
 position = Vector2(-105, 6)
 
-[node name="Block2" parent="." instance=ExtResource("7_8ho00")]
-position = Vector2(-88, -40)
+[node name="Block2" parent="Block" instance=ExtResource("7_8ho00")]
+position = Vector2(17, -46)
 
-[node name="PuzzleButton3" parent="." instance=ExtResource("6_8ho00")]
-position = Vector2(153, -88)
+[node name="Block3" parent="Block" instance=ExtResource("8_odg1s")]
+position = Vector2(220, -30)
 
-[node name="Block3" parent="." instance=ExtResource("8_odg1s")]
-position = Vector2(115, -24)
+[node name="LockedDoor" parent="." instance=ExtResource("5_00mv7")]
+position = Vector2(-136, -82)
+buttons_needed = 2
 
-[node name="LockedDoor2" parent="." instance=ExtResource("5_00mv7")]
-position = Vector2(103, -24)
+[node name="LockedDoor2" parent="LockedDoor" instance=ExtResource("5_00mv7")]
+position = Vector2(239, 58)
 
-[node name="LockedDoor3" parent="." instance=ExtResource("5_00mv7")]
-position = Vector2(200, -117)
+[node name="LockedDoor3" parent="LockedDoor" instance=ExtResource("5_00mv7")]
+position = Vector2(336, -35)
 
 [node name="SwitchPuzzleManager" parent="." instance=ExtResource("11_g75ix")]
 position = Vector2(24, -74)
 
-[node name="Switch1" parent="." instance=ExtResource("11_nqymn")]
-position = Vector2(-20, -55)
+[node name="Switch1" parent="SwitchPuzzleManager" instance=ExtResource("11_nqymn")]
+position = Vector2(-44, 19)
 
-[node name="Switch2" parent="." instance=ExtResource("11_nqymn")]
-position = Vector2(5, -45)
+[node name="Switch2" parent="SwitchPuzzleManager" instance=ExtResource("11_nqymn")]
+position = Vector2(-19, 29)
 
-[node name="Switch3" parent="." instance=ExtResource("11_nqymn")]
-position = Vector2(45, -45)
+[node name="Switch3" parent="SwitchPuzzleManager" instance=ExtResource("11_nqymn")]
+position = Vector2(21, 29)
 
-[node name="Switch4" parent="." instance=ExtResource("11_nqymn")]
-position = Vector2(68, -55)
+[node name="Switch4" parent="SwitchPuzzleManager" instance=ExtResource("11_nqymn")]
+position = Vector2(44, 19)
 
 [node name="TreasureChest" parent="." instance=ExtResource("13_x00t5")]
 position = Vector2(24, -140)
@@ -928,20 +908,40 @@ position = Vector2(22, -24)
 position = Vector2(1, 1)
 zoom = Vector2(5, 5)
 
+[node name="PuzzleWalls" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleWalls"]
+position = Vector2(-55.5, -24)
+shape = SubResource("RectangleShape2D_n5fck")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PuzzleWalls"]
+position = Vector2(-136, -82)
+shape = SubResource("RectangleShape2D_n5fck")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PuzzleWalls"]
+position = Vector2(200, -114)
+shape = SubResource("RectangleShape2D_n5fck")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="PuzzleWalls"]
+position = Vector2(104, -24)
+shape = SubResource("RectangleShape2D_n5fck")
+
 [connection signal="pressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_unpressed"]
-[connection signal="pressed" from="PuzzleButton2" to="LockedDoor" method="_on_puzzle_button_pressed"]
-[connection signal="unpressed" from="PuzzleButton2" to="LockedDoor" method="_on_puzzle_button_unpressed"]
-[connection signal="pressed" from="SingleUsePuzzleButton" to="LockedDoor2" method="_on_puzzle_button_pressed"]
-[connection signal="pressed" from="PuzzleButton3" to="LockedDoor3" method="_on_puzzle_button_pressed"]
-[connection signal="unpressed" from="PuzzleButton3" to="LockedDoor3" method="_on_puzzle_button_unpressed"]
+[connection signal="pressed" from="PuzzleButton/PuzzleButton2" to="LockedDoor" method="_on_puzzle_button_pressed"]
+[connection signal="unpressed" from="PuzzleButton/PuzzleButton2" to="LockedDoor" method="_on_puzzle_button_unpressed"]
+[connection signal="pressed" from="PuzzleButton/PuzzleButton3" to="LockedDoor/LockedDoor3" method="_on_puzzle_button_pressed"]
+[connection signal="unpressed" from="PuzzleButton/PuzzleButton3" to="LockedDoor/LockedDoor3" method="_on_puzzle_button_unpressed"]
+[connection signal="pressed" from="PuzzleButton/SingleUsePuzzleButton" to="LockedDoor/LockedDoor2" method="_on_puzzle_button_pressed"]
 [connection signal="puzzle_failed" from="SwitchPuzzleManager" to="SecretWall" method="enable_secret_wall"]
 [connection signal="puzzle_solved" from="SwitchPuzzleManager" to="SecretWall" method="disable_secret_wall"]
-[connection signal="switch_activated" from="Switch1" to="SwitchPuzzleManager" method="increase_score"]
-[connection signal="switch_deactivated" from="Switch1" to="SwitchPuzzleManager" method="decrease_score"]
-[connection signal="switch_activated" from="Switch2" to="SwitchPuzzleManager" method="decrease_score"]
-[connection signal="switch_deactivated" from="Switch2" to="SwitchPuzzleManager" method="increase_score"]
-[connection signal="switch_activated" from="Switch3" to="SwitchPuzzleManager" method="increase_score"]
-[connection signal="switch_deactivated" from="Switch3" to="SwitchPuzzleManager" method="decrease_score"]
-[connection signal="switch_activated" from="Switch4" to="SwitchPuzzleManager" method="decrease_score"]
-[connection signal="switch_deactivated" from="Switch4" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_activated" from="SwitchPuzzleManager/Switch1" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_deactivated" from="SwitchPuzzleManager/Switch1" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_activated" from="SwitchPuzzleManager/Switch2" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_deactivated" from="SwitchPuzzleManager/Switch2" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_activated" from="SwitchPuzzleManager/Switch3" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_deactivated" from="SwitchPuzzleManager/Switch3" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_activated" from="SwitchPuzzleManager/Switch4" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_deactivated" from="SwitchPuzzleManager/Switch4" to="SwitchPuzzleManager" method="increase_score"]
