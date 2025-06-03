@@ -174,7 +174,7 @@ position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_4lx4x")
 animation = &"move_up"
 autoplay = "default"
-frame_progress = 0.84575
+frame_progress = 0.41245
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6kvin")

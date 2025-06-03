@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+@export var acceleration: float = 5
 @export var move_speed: float = 60
 @export var push_strength: float = 10
 
@@ -28,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 func move_player() -> void:
 	var move_vector: Vector2 = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
 	
-	velocity = move_vector * move_speed
+	velocity = velocity.move_toward(move_vector * move_speed, acceleration)
 	
 	if velocity.x > 0:
 		$AnimatedSprite2D.play('move_right')
@@ -70,13 +71,18 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group('interactable'):
 		body.can_interact = false
 
-func _on_hitbox_area_2d_body_entered(_body: Node2D) -> void:
+func _on_hitbox_area_2d_body_entered(body: Node2D) -> void:
 	# Body is always an enemy because the hitbox only interacts (mask) with layer 5 - Enemies
 	SceneManager.player_hp -= 1
 	update_hp_bar()
-	if SceneManager.player_hp > 0: return
+
+	if SceneManager.player_hp <= 0: kill_player()
 	
-	kill_player()
+	var distance_to_player: Vector2 = global_position - body.global_position
+	var knockback_direction: Vector2 = distance_to_player.normalized()
+	var knockback_strength: float = 150
+	
+	velocity += knockback_direction * knockback_strength
 	
 
 func kill_player() -> void:
@@ -108,7 +114,13 @@ func attack():
 		$AnimationPlayer.play("attack_up")
 
 func _on_weapon_area_2d_body_entered(body: Node2D) -> void:
-	body.queue_free() # Deletes the body
+	var distance_to_enemy: Vector2 = body.global_position - global_position
+	var knockback_direction: Vector2 = distance_to_enemy.normalized()
+	var knockback_strenght: float = 150
+	body.velocity += knockback_direction * knockback_strenght
+	body.hp -= 1
+	
+	if body.hp <= 0: body.queue_free()
 
 func _on_attack_duration_timer_timeout() -> void:
 	$Weapon.visible = false

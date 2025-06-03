@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
+@export var hp: int = 2
 @export var enemy_speed: float = 30
+@export var acceleration: float = 5
 
 var target: Node2D = null
 
@@ -16,7 +18,7 @@ func chase_target() -> void:
 	var distance_to_player: Vector2 = target.global_position - global_position
 	var direction_normal: Vector2 = distance_to_player.normalized()
 	
-	velocity = direction_normal * enemy_speed
+	velocity = velocity.move_toward(direction_normal * enemy_speed, acceleration)
 	
 func animate_enemy() -> void:
 	if velocity == Vector2(0, 0): return
