@@ -9,6 +9,8 @@ var can_interact: bool = false
 func _process(_delta: float) -> void:
 	if !can_interact or !Input.is_action_just_pressed('interact'): return
 	
+	$AudioStreamPlayer2D.play()
+	
 	if dialog_index < dialog_lines.size():
 		$CanvasLayer.visible = true
 		get_tree().paused = true

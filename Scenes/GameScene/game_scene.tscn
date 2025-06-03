@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cjofj541pbosn" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan3/SpriteSheet.png" id="8_njm7v"]
 [ext_resource type="Texture2D" uid="uid://vmc42jgdvyvb" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan3/Faceset.png" id="9_bkvnf"]
 [ext_resource type="PackedScene" uid="uid://bssy0fqd505oy" path="res://Scenes/NPC/npc_alex.tscn" id="9_nr542"]
-[ext_resource type="PackedScene" uid="uid://c0qq8s4rr8tek" path="res://Scenes/Switch/switch.tscn" id="14_bkvnf"]
+[ext_resource type="AudioStream" uid="uid://ddiwjd13hxxkl" path="res://Ninja Adventure - Asset Pack/Musics/11 - Clearing.ogg" id="15_rpdpv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_04h35"]
 texture = ExtResource("2_l6yvh")
@@ -919,8 +919,12 @@ metadata/_edit_use_anchors_ = true
 [node name="LockedDoor" parent="ObstacleLayer" instance=ExtResource("7_elpgg")]
 position = Vector2(312, -178)
 
-[node name="Switch" parent="ObstacleLayer" instance=ExtResource("14_bkvnf")]
-position = Vector2(78, -20)
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("15_rpdpv")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="PuzzleButton" to="ObstacleLayer/LockedDoor" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton" to="ObstacleLayer/LockedDoor" method="_on_puzzle_button_unpressed"]

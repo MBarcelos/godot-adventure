@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://cumw4tafipxfy"]
+[gd_scene load_steps=21 format=4 uid="uid://cumw4tafipxfy"]
 
 [ext_resource type="Texture2D" uid="uid://bva82gkl5ve8b" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/TilesetWallSimple.png" id="1_sx8ki"]
 [ext_resource type="PackedScene" uid="uid://dhjxpdfrc4irr" path="res://Scenes/Player/player.tscn" id="1_xuufh"]
 [ext_resource type="Texture2D" uid="uid://jks5p7ldtwgo" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/TilesetInteriorFloor.png" id="2_6f4q3"]
 [ext_resource type="PackedScene" uid="uid://cdkxe4eajuvp2" path="res://Scenes/SceneEntrance/scene_entrance.tscn" id="2_okyhq"]
+[ext_resource type="AudioStream" uid="uid://cdomo58h4d1mi" path="res://Ninja Adventure - Asset Pack/Sounds/Game/PowerUp1.wav" id="4_mv4ck"]
 [ext_resource type="Script" uid="uid://dtvo4xjlfxxeu" path="res://Scenes/DungeonScene/secret_wall.gd" id="4_u35dq"]
 [ext_resource type="PackedScene" uid="uid://dflyr8li2ru0s" path="res://Scenes/LockedDoor/locked_door.tscn" id="5_00mv7"]
 [ext_resource type="PackedScene" uid="uid://30rcc40wyllf" path="res://Scenes/PuzzleButton/puzzle_button.tscn" id="6_8ho00"]
@@ -13,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b7c5r8v2mrci" path="res://Scenes/Switch/switch_puzzle_manager.tscn" id="11_g75ix"]
 [ext_resource type="PackedScene" uid="uid://c0qq8s4rr8tek" path="res://Scenes/Switch/switch.tscn" id="11_nqymn"]
 [ext_resource type="PackedScene" uid="uid://bvo6duucr0brx" path="res://Scenes/TreasureChest/treasure_chest.tscn" id="13_x00t5"]
+[ext_resource type="AudioStream" uid="uid://sniyyv6pfpvg" path="res://Ninja Adventure - Asset Pack/Musics/2 - The Cave.ogg" id="15_ct4wq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_102mq"]
 texture = ExtResource("2_6f4q3")
@@ -837,6 +839,9 @@ tile_map_data = PackedByteArray("AAD///v/AAAIAAYAAAAAAPv/AAAIAAYAAAABAPv/AAAIAAY
 tile_set = SubResource("TileSet_102mq")
 script = ExtResource("4_u35dq")
 
+[node name="SecretWallStreamPlayer" type="AudioStreamPlayer2D" parent="SecretWall"]
+stream = ExtResource("4_mv4ck")
+
 [node name="SceneEntrance" parent="." instance=ExtResource("2_okyhq")]
 position = Vector2(24, 21)
 next_scene = "res://Scenes/GameScene/game_scene.tscn"
@@ -927,6 +932,13 @@ shape = SubResource("RectangleShape2D_n5fck")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="PuzzleWalls"]
 position = Vector2(104, -24)
 shape = SubResource("RectangleShape2D_n5fck")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("15_ct4wq")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton" to="LockedDoor" method="_on_puzzle_button_unpressed"]

@@ -9,6 +9,8 @@ var is_activated: bool = false
 func _process(delta: float) -> void:
 	if !can_interact or !Input.is_action_just_pressed('interact'): return
 	
+	$AudioStreamPlayer2D.play()
+	
 	if is_activated:
 		deactivate_switch()
 	else:
