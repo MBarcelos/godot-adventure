@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dhjxpdfrc4irr"]
+[gd_scene load_steps=25 format=3 uid="uid://dhjxpdfrc4irr"]
 
 [ext_resource type="Script" uid="uid://bvriyi3eswayc" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://dvlue2n4i3qa7" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Flam/SeparateAnim/Walk.png" id="2_a3d8c"]
@@ -146,6 +146,9 @@ height = 12.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
 size = Vector2(8, 8)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xpcdj"]
+radius = 3.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_mtuoh"]
 font_size = 32
 
@@ -170,6 +173,15 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
 shape = SubResource("RectangleShape2D_a3d8c")
 debug_color = Color(8.66354e-07, 0.634097, 0.432968, 0.42)
+
+[node name="HitboxArea2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2D"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_xpcdj")
+debug_color = Color(0.968627, 0, 0.027451, 0.419608)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -199,3 +211,4 @@ texture = ExtResource("3_xpcdj")
 
 [connection signal="body_entered" from="InteractArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractArea2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="HitboxArea2D" to="." method="_on_hitbox_area_2d_body_entered"]

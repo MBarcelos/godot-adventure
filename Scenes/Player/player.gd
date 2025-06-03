@@ -63,3 +63,17 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group('interactable'):
 		body.can_interact = false
+
+
+func _on_hitbox_area_2d_body_entered(body: Node2D) -> void:
+	# Body is always an enemy because the hitbox only interacts (mask) with layer 5 - Enemies
+	SceneManager.player_hp -= 1
+	
+	if SceneManager.player_hp > 0: return
+	
+	kill_player()
+	
+
+func kill_player() -> void:
+	SceneManager.player_hp = SceneManager.INITIAL_HP
+	get_tree().call_deferred("reload_current_scene")
