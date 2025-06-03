@@ -7,6 +7,7 @@ class_name Player
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_treasure_label()
+	update_hp_bar()
 	if SceneManager.player_spawn_position != Vector2(0,0):
 		position = SceneManager.player_spawn_position
 
@@ -68,7 +69,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func _on_hitbox_area_2d_body_entered(body: Node2D) -> void:
 	# Body is always an enemy because the hitbox only interacts (mask) with layer 5 - Enemies
 	SceneManager.player_hp -= 1
-	
+	update_hp_bar()
 	if SceneManager.player_hp > 0: return
 	
 	kill_player()
@@ -77,3 +78,7 @@ func _on_hitbox_area_2d_body_entered(body: Node2D) -> void:
 func kill_player() -> void:
 	SceneManager.player_hp = SceneManager.INITIAL_HP
 	get_tree().call_deferred("reload_current_scene")
+
+func update_hp_bar():
+	%HPBar.play("%s_hp" % SceneManager.player_hp)
+	

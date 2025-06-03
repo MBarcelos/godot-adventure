@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://dhjxpdfrc4irr"]
+[gd_scene load_steps=32 format=3 uid="uid://dhjxpdfrc4irr"]
 
 [ext_resource type="Script" uid="uid://bvriyi3eswayc" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://dvlue2n4i3qa7" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Flam/SeparateAnim/Walk.png" id="2_a3d8c"]
+[ext_resource type="Texture2D" uid="uid://wgjgnwn5w8k1" path="res://Ninja Adventure - Asset Pack/Ui/LifeReceptacle/heart.png" id="3_mtuoh"]
 [ext_resource type="Texture2D" uid="uid://dh6xstgykw0ty" path="res://Ninja Adventure - Asset Pack/Items/Scroll/ScrollEmpty.png" id="3_xpcdj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a3d8c"]
@@ -149,6 +150,69 @@ size = Vector2(8, 8)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xpcdj"]
 radius = 3.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnuln"]
+atlas = ExtResource("3_mtuoh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqm4k"]
+atlas = ExtResource("3_mtuoh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcvs5"]
+atlas = ExtResource("3_mtuoh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8ma5"]
+atlas = ExtResource("3_mtuoh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eksi1"]
+atlas = ExtResource("3_mtuoh")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jincj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnuln")
+}],
+"loop": true,
+"name": &"0_hp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqm4k")
+}],
+"loop": true,
+"name": &"1_hp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcvs5")
+}],
+"loop": true,
+"name": &"2_hp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8ma5")
+}],
+"loop": true,
+"name": &"3_hp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eksi1")
+}],
+"loop": true,
+"name": &"4_hp",
+"speed": 5.0
+}]
+
 [sub_resource type="LabelSettings" id="LabelSettings_mtuoh"]
 font_size = 32
 
@@ -185,11 +249,19 @@ debug_color = Color(0.968627, 0, 0.027451, 0.419608)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="HPBar" type="AnimatedSprite2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(43, 33)
+scale = Vector2(2.3125, 2.3125)
+sprite_frames = SubResource("SpriteFrames_jincj")
+animation = &"0_hp"
+autoplay = "4_hp"
+
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = 24.0
-offset_top = 37.0
-offset_right = 128.0
-offset_bottom = 85.0
+offset_left = 76.0
+offset_top = 11.0
+offset_right = 180.0
+offset_bottom = 59.0
 
 [node name="TreasureLabel" type="Label" parent="CanvasLayer/Panel"]
 unique_name_in_owner = true
