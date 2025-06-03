@@ -860,7 +860,7 @@ tile_map_data = PackedByteArray("AAACAAQAAAACAAAAAAABAAQAAAACAAAAAAARAP7/AAAAAAI
 tile_set = SubResource("TileSet_oi8ly")
 
 [node name="Slime" parent="ObstacleLayer" instance=ExtResource("7_rpdpv")]
-position = Vector2(86, -40)
+position = Vector2(140, -43)
 
 [node name="Player" parent="ObstacleLayer" instance=ExtResource("1_2p8i2")]
 y_sort_enabled = true
