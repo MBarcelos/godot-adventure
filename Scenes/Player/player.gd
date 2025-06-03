@@ -16,6 +16,10 @@ func _physics_process(_delta: float) -> void:
 	move_player()
 	push_blocks()
 	update_treasure_label()
+	
+	if Input.is_action_just_pressed("interact"):
+		attack()
+	
 	move_and_slide()
 
 func move_player() -> void:
@@ -55,16 +59,13 @@ func push_blocks() -> void:
 	var collision_normal: Vector2 = collision.get_normal()
 	collider_node.apply_central_force(-collision_normal * push_strength)
 
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group('interactable'):
 		body.can_interact = true
 
-
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group('interactable'):
 		body.can_interact = false
-
 
 func _on_hitbox_area_2d_body_entered(body: Node2D) -> void:
 	# Body is always an enemy because the hitbox only interacts (mask) with layer 5 - Enemies
@@ -81,4 +82,16 @@ func kill_player() -> void:
 
 func update_hp_bar():
 	%HPBar.play("%s_hp" % SceneManager.player_hp)
-	
+
+func attack():
+	$Weapon.visible = true
+	$Weapon/WeaponArea2D.monitoring = true
+	$AttackDurationTimer.start()
+
+func _on_weapon_area_2d_body_entered(body: Node2D) -> void:
+	body.queue_free() # Deletes the body
+
+
+func _on_attack_duration_timer_timeout() -> void:
+	$Weapon.visible = false
+	$Weapon/WeaponArea2D.monitoring = false
