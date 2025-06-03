@@ -4,6 +4,8 @@ class_name Player
 @export var move_speed: float = 60
 @export var push_strength: float = 10
 
+var is_attacking: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_treasure_label()
@@ -13,7 +15,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	move_player()
+	if not is_attacking:
+		move_player()
 	push_blocks()
 	update_treasure_label()
 	
@@ -67,7 +70,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group('interactable'):
 		body.can_interact = false
 
-func _on_hitbox_area_2d_body_entered(body: Node2D) -> void:
+func _on_hitbox_area_2d_body_entered(_body: Node2D) -> void:
 	# Body is always an enemy because the hitbox only interacts (mask) with layer 5 - Enemies
 	SceneManager.player_hp -= 1
 	update_hp_bar()
@@ -87,11 +90,37 @@ func attack():
 	$Weapon.visible = true
 	$Weapon/WeaponArea2D.monitoring = true
 	$AttackDurationTimer.start()
+	is_attacking = true
+	velocity = Vector2(0, 0)
+	
+	var current_animation = $AnimatedSprite2D.animation
+	if current_animation == "move_right":
+		$AnimatedSprite2D.play("attack_right")
+		$AnimationPlayer.play("attack_right")
+	elif current_animation == "move_down":
+		$AnimatedSprite2D.play("attack_down")
+		$AnimationPlayer.play("attack_down")
+	elif current_animation == "move_left":
+		$AnimatedSprite2D.play("attack_left")
+		$AnimationPlayer.play("attack_left")
+	elif current_animation == "move_up":
+		$AnimatedSprite2D.play("attack_up")
+		$AnimationPlayer.play("attack_up")
 
 func _on_weapon_area_2d_body_entered(body: Node2D) -> void:
 	body.queue_free() # Deletes the body
 
-
 func _on_attack_duration_timer_timeout() -> void:
 	$Weapon.visible = false
 	$Weapon/WeaponArea2D.monitoring = false
+	is_attacking = false
+	
+	var current_animation = $AnimatedSprite2D.animation
+	if current_animation == "attack_right":
+		$AnimatedSprite2D.play("move_right")
+	elif current_animation == "attack_down":
+		$AnimatedSprite2D.play("move_down")
+	elif current_animation == "attack_left":
+		$AnimatedSprite2D.play("move_left")
+	elif current_animation == "attack_up":
+		$AnimatedSprite2D.play("move_up")
